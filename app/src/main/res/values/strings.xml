@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Nike Code Challenge</string>
+    <string name="menu_title_search">Search</string>
+    <string name="menu_title_drawer">Drawer</string>
+</resources>
