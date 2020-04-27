@@ -22,7 +22,7 @@ class UrbanDictionaryViewModel : ViewModel() {
 
     private fun updateObservable(response: DescriptionResponse?) {
         if (response == null)
-            udDescriptionError.postValue("Error Message")
+            udDescriptionError.postValue("There was an Error, Try again later")
         else
             udDescription.postValue(response)
     }

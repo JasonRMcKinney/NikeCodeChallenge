@@ -2,6 +2,7 @@ package com.example.nikecodechallenge.view
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,15 +38,18 @@ class MainActivity : AppCompatActivity() {
             Observer { t ->
                 t?.let {
                     if (it.list.isEmpty()) {
-
+                        Toast.makeText(this@MainActivity, "No Results Found", Toast.LENGTH_LONG)
+                            .show()
                     }
                     initAdapter((it))
                 }
             })
 
         viewModel.getUdDescriptionError().observe(this,
-            Observer<String> { t ->
+            Observer { t ->
                 t?.let {
+                    recycler_view.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                     Toast.makeText(this@MainActivity, t, Toast.LENGTH_LONG).show()
                 }
             })
@@ -85,6 +89,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initAdapter(dataSet: DescriptionResponse) {
+        recycler_view.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
         definitionAdapter.dataSet = dataSet
     }
 
@@ -98,7 +104,11 @@ class MainActivity : AppCompatActivity() {
         val searchView = menu?.findItem(R.id.search_action)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { searchForDefinition(it) }
+                query?.let {
+                    recycler_view.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
+                    searchForDefinition(it)
+                }
                 menu.findItem(R.id.search_action).collapseActionView()
                 searchView.clearFocus()
                 return true
