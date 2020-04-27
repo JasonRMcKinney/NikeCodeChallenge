@@ -2,4 +2,9 @@
     <string name="app_name">Nike Code Challenge</string>
     <string name="menu_title_search">Search</string>
     <string name="menu_title_drawer">Drawer</string>
+    <string name="progress_text">Hang On, I\'m fetching some results..</string>
+    <string name="context_arrow">Arrow Pointing to Search</string>
+    <string name="click_to_start">Click Search to get Started</string>
+    <string name="main_text">Search UrbanDictionary for a Term... \n Results Display here</string>
+    <string name="content_description_logo">Urban Dictionary Logo</string>
 </resources>

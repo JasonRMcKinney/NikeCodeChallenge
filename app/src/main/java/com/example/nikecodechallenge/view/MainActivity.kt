@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                     if (it.list.isEmpty()) {
                         Toast.makeText(this@MainActivity, "No Results Found", Toast.LENGTH_LONG)
                             .show()
+                        recycler_view.visibility = View.GONE
+                        progress_circle.visibility = View.GONE
+                        default_container.visibility = View.VISIBLE
                     }
                     initAdapter((it))
                 }
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             Observer { t ->
                 t?.let {
                     recycler_view.visibility = View.GONE
-                    progressBar.visibility = View.GONE
+                    progress_container.visibility = View.GONE
                     Toast.makeText(this@MainActivity, t, Toast.LENGTH_LONG).show()
                 }
             })
@@ -90,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     fun initAdapter(dataSet: DescriptionResponse) {
         recycler_view.visibility = View.VISIBLE
-        progressBar.visibility = View.GONE
+        progress_container.visibility = View.GONE
         definitionAdapter.dataSet = dataSet
     }
 
@@ -106,7 +109,8 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     recycler_view.visibility = View.GONE
-                    progressBar.visibility = View.VISIBLE
+                    progress_container.visibility = View.VISIBLE
+                    default_container.visibility = View.GONE
                     searchForDefinition(it)
                 }
                 menu.findItem(R.id.search_action).collapseActionView()
