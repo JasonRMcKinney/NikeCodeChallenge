@@ -1,0 +1,2 @@
+rootProject.name='Nike Code Challenge'
+include ':app'
