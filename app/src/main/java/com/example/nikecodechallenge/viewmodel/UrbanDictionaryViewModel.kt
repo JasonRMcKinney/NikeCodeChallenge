@@ -1,5 +1,6 @@
 package com.example.nikecodechallenge.viewmodel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +21,8 @@ class UrbanDictionaryViewModel : ViewModel() {
         repository.getWordDefinition(input)
     }
 
-    private fun updateObservable(response: DescriptionResponse?) {
+    @VisibleForTesting
+    fun updateObservable(response: DescriptionResponse?) {
         if (response == null)
             udDescriptionError.postValue("There was an Error, Try again later")
         else
